@@ -51,6 +51,7 @@ function scoreUpdater(state, userSelectedAnswer) {
 
 var initialState = {
     view: 'start'
+    questions: [quesiton1, quesstion2, ]
 }
 
 function appStart() {
@@ -83,20 +84,23 @@ function render() {
 
 function renderQuestion() {
     $('button').on('click', function() {
+			 // let clickCount = 0; 
 
-        for (let i=0; i<
+       for (let i=0; i<questions.length; i++) {
 
         let questionTemplate = `
-        <h2>${question1.question}</h2>
-            <input type="radio">${question1.answers[0]}</input>
-            <input type="radio">${question1.answers[1]}</input>
-            <input type="radio">${question1.answers[2]}</input>
-            <input type="radio">${question1.answers[3]}</input>
+        <h2>${questions[i].question}</h2>
+            <input type="radio">${questions[i].answers[0]}</input>
+            <input type="radio">${questions[i].answers[1]}</input>
+            <input type="radio">${questions[i].answers[2]}</input>
+            <input type="radio">${questions[i].answers[3]}</input>
             <br>
             <br>
             <button class="next-question">Was I right?</button>`;
             
         $('div.question').append(questionTemplate);
+      }
+//      clickCount++
     })
 }
 

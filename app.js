@@ -41,20 +41,56 @@ var initialState = {
 
 function appStart() {
     $('button').on('click', function() {
-        displayQuestionView();
+        changeQuestionView();
         render();
     })
 
     render();
 }
 
-function displayQuestionView() {
+function changeQuestionView() {
     initialState.view = 'question';
+    // display question form question1 ->html template
+
+
+    // display choices 
+    // display next button
+    // keep track of questions answered
+    // display current score
+
 }
 // `${}`
 function render() {
     var selector = '.' + initialState.view
-    $(selector).addClass('current')
+    $('.page').removeClass('current');
+    $(selector).addClass('current');
+    
+    let questionTemplate = `
+    <h2>${question1.question}</h2>
+		<input type="radio">${question1.answers[0]}</input>
+		<input type="radio">${question1.answers[1]}</input>
+		<input type="radio">${question1.answers[2]}</input>
+		<input type="radio">${question1.answers[3]}</input>
+		<br>
+		<br>
+		<button class="next-question">Was I right?</button>`;
+		$('div.question').append(questionTemplate);
 }
+
+function displayNextQuestion() {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 $(appStart);

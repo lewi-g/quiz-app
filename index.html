@@ -6,13 +6,24 @@
  </head>
  <body>
 	<div class='page start'>
-		<button>Start Quiz</button>
+		<button class="next-question" >Start Quiz</button>
 	</div>
 	<div class='page question'>
-		<p>Question</p>
+<!-- 		<h2>Question</h2>
+		<input type="radio">${question1.answer[0]}</input>
+		<input type="radio">${question1.answer[1]}</input>
+		<input type="radio">${question1.answer[2]}</input>
+		<input type="radio">${question1.answer[3]}</input>
+		<br>
+		<br>
+		<button class="next-question">Was I right?</button>
+ -->	</div>
+	<div class='page result'>
+		<p>Result</p>
 	</div>
-	<div class='page result'></div>
-	<div class='page final'></div>
+	<div class='page final'>
+		<p></p>
+	</div>
  	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  	<script type="text/javascript" src="app.js"></script>
  </body>

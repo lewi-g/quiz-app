@@ -6,6 +6,20 @@ question1 = {
     correctAnswer: 1
 }
 
+question2 = {
+    question: "What is the capital city of Bulgaria?",
+    answers: ['Sofia', 'Serbia', 'Bucharest', 'Vienna'],
+    correctAnswer: 0
+}
+
+question3 = {
+    question: "What continent is Iran in?",
+    answers: ['United States', 'Europe', 'Asia', 'Antarctica'],
+    correctAnswer: 2
+}
+
+let questions = [question1, question2, question3];
+
 // stateObject={
 //     view: //start, question, results, final,
 // 	// questions: [question1, question2, question3 ...],
@@ -46,6 +60,7 @@ function appStart() {
     })
 
     render();
+    renderQuestion();
 }
 
 function changeQuestionView() {
@@ -64,17 +79,25 @@ function render() {
     var selector = '.' + initialState.view
     $('.page').removeClass('current');
     $(selector).addClass('current');
-    
-    let questionTemplate = `
-    <h2>${question1.question}</h2>
-		<input type="radio">${question1.answers[0]}</input>
-		<input type="radio">${question1.answers[1]}</input>
-		<input type="radio">${question1.answers[2]}</input>
-		<input type="radio">${question1.answers[3]}</input>
-		<br>
-		<br>
-		<button class="next-question">Was I right?</button>`;
-		$('div.question').append(questionTemplate);
+}
+
+function renderQuestion() {
+    $('button').on('click', function() {
+
+        for (let i=0; i<
+
+        let questionTemplate = `
+        <h2>${question1.question}</h2>
+            <input type="radio">${question1.answers[0]}</input>
+            <input type="radio">${question1.answers[1]}</input>
+            <input type="radio">${question1.answers[2]}</input>
+            <input type="radio">${question1.answers[3]}</input>
+            <br>
+            <br>
+            <button class="next-question">Was I right?</button>`;
+            
+        $('div.question').append(questionTemplate);
+    })
 }
 
 function displayNextQuestion() {

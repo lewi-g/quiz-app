@@ -1,0 +1,41 @@
+Q: What is the capital city of NY state?
+
+    1. NYC
+    2. Albany
+    3. Buffalo
+    4. Staten Island
+
+Q: What is the capital city of Bulgaria?
+
+    1. Sofia
+    2. Serbia
+    3. Bucharest
+    4. Vienna
+
+Q: What continent is Iran in?
+
+    1. United States
+    2. Europe
+    3. Asia
+    4. Antarctica
+
+Q: What's the capital city of Somalia?
+
+    1. Nairobi
+    2. Manila
+    3. Praetoria
+    4. Mogadishu
+
+Q: What's the capital city of the Philippines?
+
+    1. Jakarta
+    2. Tokyo
+    3. Washington DC
+    4. Manila
+
+Q: What kinds of pickups are on the Fender Stratocaster electric guitar?
+
+    1. Single coils
+    2. Humbuckers
+    3. Active
+    4. None of the above

@@ -56,7 +56,8 @@ var initialState = {
     	question: "What continent is Iran in?",
     	answers: ['United States', 'Europe', 'Asia', 'Antarctica'],
     	correctAnswer: 2
-			}]
+			}],
+		currentQuestion:0,
 }
 
 function appStart() {
@@ -92,13 +93,13 @@ function renderQuestion() {
 			 // let clickCount = 0; 
 
        for (let i=0; i<initialState.questions.length; i++) {
-
+// input type= radio  name
         let questionTemplate = `
         <h2>${initialState.questions[i].question}</h2>
-            <input type="radio">${initialState.questions[i].answers[0]}</input>
-            <input type="radio">${initialState.questions[i].answers[1]}</input>
-            <input type="radio">${initialState.questions[i].answers[2]}</input>
-            <input type="radio">${initialState.questions[i].answers[3]}</input>
+            <input type="radio" name="choice">${initialState.questions[i].answers[0]}</input>
+            <input type="radio" name="choice">${initialState.questions[i].answers[1]}</input>
+            <input type="radio" name="choice">${initialState.questions[i].answers[2]}</input>
+            <input type="radio" name="choice">${initialState.questions[i].answers[3]}</input>
             <br>
             <br>
             <button class="next-question">Was I right?</button>`;

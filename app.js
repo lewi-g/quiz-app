@@ -1,24 +1,15 @@
 // Render => User Action => State Changes => Render => ...
 
-question1 = {
-    question: "What is the capital city of NY state?",
-    answers: ['NYC', 'Albany', 'Buffalo', 'Staten Island'],
-    correctAnswer: 1
-}
+question1 = 
 
-question2 = {
-    question: "What is the capital city of Bulgaria?",
-    answers: ['Sofia', 'Serbia', 'Bucharest', 'Vienna'],
-    correctAnswer: 0
-}
-
+question2 = 
 question3 = {
     question: "What continent is Iran in?",
     answers: ['United States', 'Europe', 'Asia', 'Antarctica'],
     correctAnswer: 2
 }
 
-let questions = [question1, question2, question3];
+//let questions = [question1, question2, question3];
 
 // stateObject={
 //     view: //start, question, results, final,
@@ -50,8 +41,22 @@ function scoreUpdater(state, userSelectedAnswer) {
 // $(fn)
 
 var initialState = {
-    view: 'start'
-    questions: [quesiton1, quesstion2, ]
+    view: 'start',
+    questions: [{
+    question: "What is the capital city of NY state?",
+    answers: ['NYC', 'Albany', 'Buffalo', 'Staten Island'],
+    correctAnswer: 1
+			}, 
+			{
+    	question: "What is the capital city of Bulgaria?",
+    	answers: ['Sofia', 'Serbia', 'Bucharest', 'Vienna'],
+    	correctAnswer: 0
+			},
+			{
+    	question: "What continent is Iran in?",
+    	answers: ['United States', 'Europe', 'Asia', 'Antarctica'],
+    	correctAnswer: 2
+			}]
 }
 
 function appStart() {
@@ -75,7 +80,7 @@ function changeQuestionView() {
     // display current score
 
 }
-// `${}`
+
 function render() {
     var selector = '.' + initialState.view
     $('.page').removeClass('current');
@@ -86,27 +91,27 @@ function renderQuestion() {
     $('button').on('click', function() {
 			 // let clickCount = 0; 
 
-       for (let i=0; i<questions.length; i++) {
+       for (let i=0; i<initialState.questions.length; i++) {
 
         let questionTemplate = `
-        <h2>${questions[i].question}</h2>
-            <input type="radio">${questions[i].answers[0]}</input>
-            <input type="radio">${questions[i].answers[1]}</input>
-            <input type="radio">${questions[i].answers[2]}</input>
-            <input type="radio">${questions[i].answers[3]}</input>
+        <h2>${initialState.questions[i].question}</h2>
+            <input type="radio">${initialState.questions[i].answers[0]}</input>
+            <input type="radio">${initialState.questions[i].answers[1]}</input>
+            <input type="radio">${initialState.questions[i].answers[2]}</input>
+            <input type="radio">${initialState.questions[i].answers[3]}</input>
             <br>
             <br>
             <button class="next-question">Was I right?</button>`;
             
         $('div.question').append(questionTemplate);
-      }
+     }
 //      clickCount++
     })
 }
 
-function displayNextQuestion() {
+// function displayNextQuestion() {
 
-}
+// }
 
 
 

@@ -1,14 +1,4 @@
 // Render => User Action => State Changes => Render => ...
-
-question1 = 
-
-question2 = 
-question3 = {
-    question: "What continent is Iran in?",
-    answers: ['United States', 'Europe', 'Asia', 'Antarctica'],
-    correctAnswer: 2
-}
-
 //let questions = [question1, question2, question3];
 
 // stateObject={
@@ -21,10 +11,41 @@ question3 = {
 
 // state modifier functions
 //user selectedAnswer is going to give us a number = index
-function scoreUpdater(state, userSelectedAnswer) {
-    if (userSelectedAnswer === state.questions[0].correctAnswer) {
+var iState = {
+    view: 'start',
+    questions: [{
+    	que: "What is the capital city of NY state?",
+    	ans: ['NYC', 'Albany', 'Buffalo', 'Staten Island'],
+    	ansKey: 1
+			}, 
+			{
+    	que: "What is the capital city of Bulgaria?",
+    	ans: ['Sofia', 'Serbia', 'Bucharest', 'Vienna'],
+    	ansKey: 0
+			},
+			{
+    	que: "What continent is Iran in?",
+    	ans: ['United States', 'Europe', 'Asia', 'Antarctica'],
+    	ansKey: 2
+			}],
+		currentQue:0,
+		score:0
+}
+
+function evaluateChoice(state, userSelectedAnswer) {
+		let correctAnswerTemplate = `
+				<h3> You got it Right!<h3>
+		<button class="next-question">Move on to next Quesiton! </button>`;
+		let wrongAnswerTemplate = `
+				<h3> Ooops! You got it wrong. The correct answer is ${ansKey}<h3>
+		<button class="next-question">Move on to next Quesiton! </button>`;
+    if (userSelectedAnswer === state.questions[0/*currentQue*/].ansKey) {
         state.score++;
-    }
+        $('div.correct').append(questionTemplate);
+    } else {
+    	//tell user correct answer if wron
+    };
+     currentQue++; 
 }
 
 // hit 'start quiz', loads up question 1
@@ -40,26 +61,6 @@ function scoreUpdater(state, userSelectedAnswer) {
 
 // $(fn)
 
-var initialState = {
-    view: 'start',
-    questions: [{
-    question: "What is the capital city of NY state?",
-    answers: ['NYC', 'Albany', 'Buffalo', 'Staten Island'],
-    correctAnswer: 1
-			}, 
-			{
-    	question: "What is the capital city of Bulgaria?",
-    	answers: ['Sofia', 'Serbia', 'Bucharest', 'Vienna'],
-    	correctAnswer: 0
-			},
-			{
-    	question: "What continent is Iran in?",
-    	answers: ['United States', 'Europe', 'Asia', 'Antarctica'],
-    	correctAnswer: 2
-			}],
-		currentQuestion:0,
-}
-
 function appStart() {
     $('button').on('click', function() {
         changeQuestionView();
@@ -71,7 +72,7 @@ function appStart() {
 }
 
 function changeQuestionView() {
-    initialState.view = 'question';
+    iState.view = 'question';
     // display question form question1 ->html template
 
 
@@ -83,7 +84,7 @@ function changeQuestionView() {
 }
 
 function render() {
-    var selector = '.' + initialState.view
+    var selector = '.' + iState.view
     $('.page').removeClass('current');
     $(selector).addClass('current');
 }
@@ -92,14 +93,14 @@ function renderQuestion() {
     $('button').on('click', function() {
 			 // let clickCount = 0; 
 
-       for (let i=0; i<initialState.questions.length; i++) {
+       for (let i=0; i<iState.questions.length; i++) {
 // input type= radio  name
         let questionTemplate = `
-        <h2>${initialState.questions[i].question}</h2>
-            <input type="radio" name="choice">${initialState.questions[i].answers[0]}</input>
-            <input type="radio" name="choice">${initialState.questions[i].answers[1]}</input>
-            <input type="radio" name="choice">${initialState.questions[i].answers[2]}</input>
-            <input type="radio" name="choice">${initialState.questions[i].answers[3]}</input>
+        <h2>${iState.questions[i].que}</h2>
+            <input type="radio" name="choice">${iState.questions[i].ans[0]}</input>
+            <input type="radio" name="choice">${iState.questions[i].ans[1]}</input>
+            <input type="radio" name="choice">${iState.questions[i].ans[2]}</input>
+            <input type="radio" name="choice">${iState.questions[i].ans[3]}</input>
             <br>
             <br>
             <button class="next-question">Was I right?</button>`;

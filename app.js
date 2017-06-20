@@ -1,4 +1,7 @@
 // Render => User Action => State Changes => Render => ...
+// what does the app need to answer all the questions?
+// how does the app react to the user?
+
 //let questions = [question1, question2, question3];
 
 // stateObject={
@@ -9,7 +12,6 @@
 //     lastCorrectAnswer:
 // }
 
-// state modifier functions
 //user selectedAnswer is going to give us a number = index
 var iState = {
     view: 'start',
@@ -31,35 +33,32 @@ var iState = {
 		currentQue:0,
 		score:0
 }
+ 
+// state modifier functions
+
+function changeQuestionView() {
+    iState.view = 'question';
+}
 
 function evaluateChoice(state, userSelectedAnswer) {
-		let correctAnswerTemplate = `
-				<h3> You got it Right!<h3>
-		<button class="next-question">Move on to next Quesiton! </button>`;
-		let wrongAnswerTemplate = `
-				<h3> Ooops! You got it wrong. The correct answer is ${ansKey}<h3>
-		<button class="next-question">Move on to next Quesiton! </button>`;
     if (userSelectedAnswer === state.questions[0/*currentQue*/].ansKey) {
         state.score++;
-        $('div.correct').append(questionTemplate);
+
     } else {
     	//tell user correct answer if wron
     };
      currentQue++; 
 }
 
-// hit 'start quiz', loads up question 1
-// *then* user clicks an option
-// console.log(scoreUpdater(stateObject, 3));
+// Evemt Listeners
 
-// what's the current question?
 
-// function to update view
 
-// what does the app need to answer all the questions?
-// how does the app react to the user?
 
-// $(fn)
+
+
+
+/// Render functions
 
 function appStart() {
     $('button').on('click', function() {
@@ -71,17 +70,7 @@ function appStart() {
     renderQuestion();
 }
 
-function changeQuestionView() {
-    iState.view = 'question';
-    // display question form question1 ->html template
 
-
-    // display choices 
-    // display next button
-    // keep track of questions answered
-    // display current score
-
-}
 
 function render() {
     var selector = '.' + iState.view
@@ -97,10 +86,10 @@ function renderQuestion() {
 // input type= radio  name
         let questionTemplate = `
         <h2>${iState.questions[i].que}</h2>
-            <input type="radio" name="choice">${iState.questions[i].ans[0]}</input>
-            <input type="radio" name="choice">${iState.questions[i].ans[1]}</input>
-            <input type="radio" name="choice">${iState.questions[i].ans[2]}</input>
-            <input type="radio" name="choice">${iState.questions[i].ans[3]}</input>
+            <input type="radio" id="1" name="choice">${iState.questions[i].ans[0]}</input>
+            <input type="radio" id="2" name="choice">${iState.questions[i].ans[1]}</input>
+            <input type="radio" id="3" name="choice">${iState.questions[i].ans[2]}</input>
+            <input type="radio" id="4" name="choice">${iState.questions[i].ans[3]}</input>
             <br>
             <br>
             <button class="next-question">Was I right?</button>`;
@@ -111,9 +100,18 @@ function renderQuestion() {
     })
 }
 
-// function displayNextQuestion() {
+function renderEvaluation(state,userSelectedAnswer) {
+	let correctAnswerTemplate = `
+		<h3> You got it Right!<h3>
+		<button class="next-question">Move on to next Quesiton! </button>`;
+	let wrongAnswerTemplate = `
+		<h3> Ooops! You got it wrong. The correct answer is ${ansKey}<h3>
+		<button class="next-question">Move on to next Quesiton! </button>`;
+		if (evaluateChoice(state, userSelectedAnswer)) {
+			 $('div.correct').append(questionTemplate);
+		}
 
-// }
+}
 
 
 
@@ -128,3 +126,8 @@ function renderQuestion() {
 
 
 $(appStart);
+
+
+
+
+

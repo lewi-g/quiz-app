@@ -4,14 +4,6 @@
 
 //let questions = [question1, question2, question3];
 
-// stateObject={
-//     view: //start, question, results, final,
-// 	// questions: [question1, question2, question3 ...],
-//     score: 0,
-//     currentQuestion: 1,
-//     lastCorrectAnswer:
-// }
-
 //user selectedAnswer is going to give us a number = index
 var iState = {
     view: 'start',
@@ -30,29 +22,27 @@ var iState = {
     	ans: ['United States', 'Europe', 'Asia', 'Antarctica'],
     	ansKey: 2
 			}],
-		currentQue:0,
-		score:0
+		currentQueIndex:0,
+		score:0,
+		lastAnswerCorrect: false,
 }
  
 // state modifier functions
 
-function changeQuestionView() {
-    iState.view = 'question';
+function changeView(state, view) {
+    iState.view = 'view';
 }
+
 
 function evaluateChoice(state, userSelectedAnswer) {
-    if (userSelectedAnswer === state.questions[0/*currentQue*/].ansKey) {
+    if (userSelectedAnswer === state.questions[iState.currentQueIndex].ansKey) {
         state.score++;
-
+        changeView(state, 'correct')
     } else {
-    	//tell user correct answer if wron
-    };
-     currentQue++; 
+    	changeView(state, 'wrong')
+    }
+     currentQueIndex++; 
 }
-
-// Evemt Listeners
-
-
 
 
 
@@ -61,13 +51,19 @@ function evaluateChoice(state, userSelectedAnswer) {
 /// Render functions
 
 function appStart() {
-    $('button').on('click', function() {
+    $('button').on('click', function(event) {
         changeQuestionView();
         render();
     })
-
+    $('form.question-form').on('submit', function(event) {
+    	 event.preventDefault();
+    	 let answer= $("input[type=radio][name=choice]:checked").val();
+    	 console.log(answer);
+    })
     render();
     renderQuestion();
+    userSelectedAnswer();
+
 }
 
 
@@ -86,21 +82,21 @@ function renderQuestion() {
 // input type= radio  name
         let questionTemplate = `
         <h2>${iState.questions[i].que}</h2>
-            <input type="radio" id="1" name="choice">${iState.questions[i].ans[0]}</input>
-            <input type="radio" id="2" name="choice">${iState.questions[i].ans[1]}</input>
-            <input type="radio" id="3" name="choice">${iState.questions[i].ans[2]}</input>
-            <input type="radio" id="4" name="choice">${iState.questions[i].ans[3]}</input>
+            <input type="radio" val="0" name="choice">${iState.questions[i].ans[0]}</input>
+            <input type="radio" val="1" name="choice">${iState.questions[i].ans[1]}</input>
+            <input type="radio" val="2" name="choice">${iState.questions[i].ans[2]}</input>
+            <input type="radio" val="3" name="choice">${iState.questions[i].ans[3]}</input>
             <br>
             <br>
-            <button class="next-question">Was I right?</button>`;
+            <button type="submit" class="next-question">Was I right?</button>`;
             
-        $('div.question').append(questionTemplate);
+        $('form.question-form').append(questionTemplate);
      }
 //      clickCount++
     })
 }
 
-function renderEvaluation(state,userSelectedAnswer) {
+function renderEvaluation(state, userSelectedAnswer) {
 	let correctAnswerTemplate = `
 		<h3> You got it Right!<h3>
 		<button class="next-question">Move on to next Quesiton! </button>`;
@@ -113,6 +109,21 @@ function renderEvaluation(state,userSelectedAnswer) {
 
 }
 
+
+// Event Listeners
+
+function userSelectedAnswer() {
+	$
+}
+
+
+// function userSelectedAnswer() {
+// 	$('input').on('click', function(event) {
+// 		console.log($(event.target).attr('id'));
+// for 		$( "input[type=radio][name=baz]:checked" ).val();
+// 		// find the corresponding answer to the id of the input 
+// 	// })
+// }
 
 
 
